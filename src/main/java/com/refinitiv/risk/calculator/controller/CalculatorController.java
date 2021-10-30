@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -28,14 +25,14 @@ public class CalculatorController {
         this.calculatorService = calculatorService;
     }
 
-    @PostMapping("/add")
+    @GetMapping("/add")
     public ResponseEntity<CalServiceResponse> add(@Valid @RequestBody CalRequestDTO request)  {
 
         LOG.info("Operate Add");
         CalServiceResponse response = calculatorService.add(request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-    @PostMapping("/minus")
+    @GetMapping("/minus")
     public ResponseEntity<CalServiceResponse> minus(@Valid @RequestBody CalRequestDTO request) {
 
         LOG.info("Operate Minus");
@@ -43,14 +40,14 @@ public class CalculatorController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping("/devide")
+    @GetMapping("/devide")
     public ResponseEntity<CalServiceResponse> devide(@Valid @RequestBody CalRequestDTO request) {
         LOG.info("Operate Devide");
         CalServiceResponse response = calculatorService.devide(request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping("/multiply")
+    @GetMapping("/multiply")
     public ResponseEntity<CalServiceResponse> multiply(@Valid @RequestBody CalRequestDTO request)   {
 
         LOG.info("Operate Multiply");
@@ -58,3 +55,4 @@ public class CalculatorController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
+
